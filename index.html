@@ -501,10 +501,16 @@
       }
 
       .panel__detail {
-        font-size: 0.94rem;
-        letter-spacing: 0.1em;
+        /* 34文字がちょうど1行に収まるようビューポート幅から逆算 */
+        font-size: min(0.92rem, calc((100vw - 68px) / 34));
+        letter-spacing: 0;
         line-height: 2.4;
+        white-space: nowrap;
         animation: fadeUp 1.1s ease 1.1s both;
+      }
+      /* HTMLの<br>を非表示にして1行扱いにする */
+      .panel__detail br {
+        display: none;
       }
 
       .panel__season {
