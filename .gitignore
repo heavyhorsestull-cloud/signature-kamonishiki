@@ -1,0 +1,6 @@
+# 戦略資料・機密ファイルは除外
+*.docx
+*.xlsx
+*.pdf
+logo_preview.png
+.claude/
