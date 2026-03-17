@@ -407,12 +407,17 @@
     }
 
 
+    /* モバイルのみ改行 */
+    .mb-br { display: none; }
+
     /* ═══════════════════════════════════════
        MOBILE HERO OVERRIDE  (<860px)
        パネルをフルスクリーンの中央揃えヒーローに変換
     ═══════════════════════════════════════ */
 
     @media (max-width: 860px) {
+
+      .mb-br { display: inline; }
 
       .split {
         display: block; /* single column */
@@ -587,7 +592,7 @@
       <p class="intro__label" data-reveal>Info</p>
       <div class="intro__text" data-reveal data-d="1">
         <p>当蔵の<span class="accent">フラグシップ</span>が、リニューアルいたします。</p>
-        <p>販売のご案内は、事前にご登録いただいた方にのみ直接お届けいたします。</p>
+        <p>販売のご案内は、事前にご登録いただいた方にのみ<span class="mb-br"><br></span>直接お届けいたします。</p>
         <p>ご登録は以下のフォームよりお願いいたします。</p>
       </div>
     </section>
