@@ -99,9 +99,6 @@
       margin-bottom: 1.6rem;
       opacity: 0;
       animation: up 1.4s cubic-bezier(0.22,1,0.36,1) 0.1s forwards;
-      /* crisp rendering at any DPI */
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
     }
 
     .hero-logo img {
@@ -264,6 +261,10 @@
       line-height: 2.8;
       letter-spacing: 0.08em;
       color: var(--mid);
+      /* natural Japanese line breaking */
+      line-break: strict;
+      overflow-wrap: anywhere;
+      text-wrap: balance;
     }
 
     .middle-text p + p {
@@ -542,7 +543,6 @@
       margin: 0 auto 1rem;
       opacity: 0.22;
       display: block;
-      image-rendering: -webkit-optimize-contrast;
     }
 
     .footer-copy {
@@ -608,7 +608,7 @@
 
     <img
       class="hero-logo"
-      src="logo-gold.png"
+      src="logo.svg"
       alt="加茂錦 紋章"
       onerror="this.style.display='none'"
     >
@@ -753,7 +753,7 @@
 <footer class="footer">
   <img
     class="footer-logo"
-    src="logo-gold.png"
+    src="logo.svg"
     alt=""
     aria-hidden="true"
     onerror="this.style.display='none'"
