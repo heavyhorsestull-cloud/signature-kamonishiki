@@ -150,7 +150,7 @@
     .hero-brand {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-      font-size: clamp(3.8rem, 10vw, 7.5rem);
+      font-size: clamp(2rem, 10vw, 7.5rem);
       letter-spacing: 0.22em;
       color: var(--gold-hi);
       line-height: 1;
@@ -158,6 +158,9 @@
       margin-bottom: 2.5rem;
       opacity: 0;
       animation: up 1.4s cubic-bezier(0.22,1,0.36,1) 1.2s forwards;
+      /* prevent overflow on narrow screens */
+      max-width: 100%;
+      word-break: keep-all;
     }
 
     /* ── Detail text ── */
@@ -261,6 +264,10 @@
       line-height: 2.8;
       letter-spacing: 0.08em;
       color: var(--mid);
+    }
+
+    .middle-text p + p {
+      margin-top: 1.8em;
     }
 
     .middle-text .accent {
@@ -585,11 +592,8 @@
     @media (max-width: 600px) {
       .field-row { grid-template-columns: 1fr; }
       .hero-logo { height: 72px; }
-      .hero-brand { letter-spacing: 0.15em; }
-    }
-
-    @media (max-width: 380px) {
-      .hero-brand { font-size: 3rem; }
+      /* tighten letter-spacing so BRILLIANCE fits narrow screens */
+      .hero-brand { letter-spacing: 0.1em; margin-right: -0.1em; }
     }
 
   </style>
@@ -618,8 +622,7 @@
     <h1 class="hero-brand">BRILLIANCE</h1>
 
     <p class="hero-detail">
-      原料と醸造の双方が基準を満たした年にのみ出荷。<br>
-      不定期醸造、限定出荷。
+      原料と醸造の双方が基準を満たした年にのみ出荷。不定期醸造、限定出荷。
     </p>
 
     <p class="hero-season">Winter 2026 —</p>
@@ -638,12 +641,11 @@
 <!-- ═════════ MIDDLE ═════════ -->
 <section class="section" aria-label="ご案内">
   <div class="inner">
-    <p class="middle-text" data-reveal>
-      当蔵の<span class="accent">フラグシップ</span>が、リニューアルいたします。<br><br>
-      販売のご案内は、事前にご登録いただいた方にのみ<br>
-      直接お届けいたします。<br><br>
-      ご登録は以下のフォームよりお願いいたします。
-    </p>
+    <div class="middle-text" data-reveal>
+      <p>当蔵の<span class="accent">フラグシップ</span>が、リニューアルいたします。</p>
+      <p>販売のご案内は、事前にご登録いただいた方にのみ直接お届けいたします。</p>
+      <p>ご登録は以下のフォームよりお願いいたします。</p>
+    </div>
   </div>
 </section>
 
@@ -655,8 +657,7 @@
     <div data-reveal>
       <h2 class="form-title" id="form-title">Waiting List</h2>
       <p class="form-sub">
-        販売開始時にご案内をお送りいたします。<br>
-        ご登録は購入を確約するものではありません。
+        販売開始時にご案内をお送りいたします。ご登録は購入を確約するものではありません。
       </p>
     </div>
 
