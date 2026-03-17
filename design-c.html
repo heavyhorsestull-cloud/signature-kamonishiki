@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>加茂錦酒造 | Flagship</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,400;1,200;1,300&family=Noto+Serif+JP:wght@200;300;400&family=Zen+Kaku+Gothic+New:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+
+    :root {
+      --bg:    #060606;
+      --gold:  #c4a050;
+      --gold2: #d9bc74;
+      --gold3: #7a6030;
+      --gline: rgba(196,160,80,0.12);
+      --text:  #ede8df;
+      --mid:   #8e8676;
+      --dim:   #4a4540;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      /* scroll-snap on the root element */
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      height: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Serif JP', serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ── grain overlay ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9000;
+      opacity: 0.016;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+
+
+    /* ══════════════════════════════════
+       SEQUENCE SECTIONS
+       Each section snaps to full viewport
+    ══════════════════════════════════ */
+
+    .seq {
+      scroll-snap-align: start;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 4rem 2rem;
+    }
+
+
+    /* ══════════════════════════════════
+       SECTION 01 — HERO
+    ══════════════════════════════════ */
+
+    .s1 {
+      background: var(--bg);
+    }
+
+    /* corner index labels */
+    .seq-num {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 200;
+      font-style: italic;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      color: var(--dim);
+    }
+    .seq-num--tl { top: 2rem; left: 2rem; }
+    .seq-num--br { bottom: 2rem; right: 2rem; }
+
+    /* thin bottom border between sections */
+    .seq::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--gline);
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0;
+    }
+
+    .hero-logo {
+      height: clamp(70px, 12vw, 120px);
+      width: auto;
+      margin-bottom: 2.6rem;
+    }
+
+    .hero-sup {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.55rem;
+      letter-spacing: 0.6em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 200;
+      font-size: clamp(3.2rem, 11vw, 9rem);
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      line-height: 0.92;
+      white-space: nowrap;
+    }
+
+    .hero-sub-row {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      margin-top: 2rem;
+    }
+
+    .hero-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold3);
+      flex-shrink: 0;
+    }
+
+    .hero-jp {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 200;
+      font-size: 0.72rem;
+      letter-spacing: 0.24em;
+      color: var(--mid);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.5rem;
+      letter-spacing: 0.5em;
+      color: var(--dim);
+      text-transform: uppercase;
+      animation: pulse 2.8s ease-in-out infinite;
+    }
+
+    .scroll-arrow {
+      width: 9px;
+      height: 9px;
+      border-right: 1px solid var(--dim);
+      border-bottom: 1px solid var(--dim);
+      transform: rotate(45deg);
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50%       { opacity: 0.85; }
+    }
+
+
+    /* ══════════════════════════════════
+       SECTION 02 — INTRO
+    ══════════════════════════════════ */
+
+    .s2 {
+      background: #080808;
+    }
+
+    .intro-inner {
+      max-width: 540px;
+      text-align: center;
+    }
+
+    .intro-label {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.52rem;
+      letter-spacing: 0.6em;
+      color: var(--gold3);
+      text-transform: uppercase;
+      margin-bottom: 3.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    .intro-label::before,
+    .intro-label::after {
+      content: '';
+      flex: 1;
+      max-width: 36px;
+      height: 1px;
+      background: var(--gold3);
+      opacity: 0.5;
+    }
+
+    .intro-text {
+      font-weight: 200;
+      font-size: clamp(0.86rem, 1.6vw, 1.05rem);
+      line-height: 3.2;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+      line-break: strict;
+      overflow-wrap: anywhere;
+      text-wrap: balance;
+    }
+
+    .intro-text p + p { margin-top: 1.4em; }
+    .intro-text .em { color: var(--text); font-weight: 300; }
+
+    .intro-cta {
+      margin-top: 3.5rem;
+    }
+
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.58rem;
+      letter-spacing: 0.5em;
+      color: var(--gold);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: gap 0.4s, color 0.4s;
+    }
+
+    .cta-link:hover { gap: 1.6rem; }
+
+    .cta-link-arrow {
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      position: relative;
+      transition: width 0.4s;
+    }
+
+    .cta-link-arrow::after {
+      content: '';
+      position: absolute;
+      right: 0; top: -3px;
+      width: 5px; height: 5px;
+      border-right: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+      transform: rotate(-45deg);
+    }
+
+    .cta-link:hover .cta-link-arrow { width: 40px; }
+
+
+    /* ══════════════════════════════════
+       SECTION 03 — FORM
+    ══════════════════════════════════ */
+
+    .s3 {
+      background: var(--bg);
+      /* allow internal scroll if form is taller than viewport */
+      overflow-y: auto;
+      scroll-snap-align: start;
+      justify-content: flex-start;
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+
+    .form-inner {
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .form-heading {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+      letter-spacing: 0.2em;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+    }
+
+    .form-sub {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--dim);
+      line-height: 2;
+    }
+
+    /* fields */
+    .field {
+      border-bottom: 1px solid rgba(74,69,64,0.38);
+      padding: 1.1rem 0 0.45rem;
+      transition: border-color 0.35s;
+    }
+    .field:focus-within { border-bottom-color: var(--gold3); }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 2rem;
+    }
+
+    .field__label {
+      display: block;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.58rem;
+      letter-spacing: 0.24em;
+      color: var(--dim);
+      margin-bottom: 0.35rem;
+      transition: color 0.35s;
+    }
+    .field:focus-within .field__label { color: var(--gold3); }
+
+    .field__req { color: var(--gold3); margin-left: 0.12em; }
+
+    .field__input,
+    .field__select {
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 300;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      padding: 0.1rem 0;
+      appearance: none;
+      -webkit-appearance: none;
+      border-radius: 0;
+      caret-color: var(--gold);
+    }
+    .field__input::placeholder {
+      color: rgba(74,69,64,0.45);
+      font-weight: 200;
+      font-size: 0.82rem;
+    }
+    .field__select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg width='9' height='5' viewBox='0 0 9 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0.5L4.5 4.5L9 0.5' stroke='%234a4540' stroke-width='0.75' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0 center;
+      padding-right: 1rem;
+    }
+    .field__select option { background: #111; color: var(--text); }
+
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 2rem 0 1.4rem;
+    }
+    .check-box {
+      flex-shrink: 0;
+      width: 13px; height: 13px;
+      appearance: none;
+      -webkit-appearance: none;
+      border: 1px solid var(--dim);
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      margin-top: 3px;
+      transition: border-color 0.3s;
+    }
+    .check-box:checked { border-color: var(--gold3); }
+    .check-box:checked::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      background: var(--gold);
+    }
+    .check-label {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.66rem;
+      color: var(--dim);
+      line-height: 1.9;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+
+    .btn-submit {
+      display: block;
+      width: 100%;
+      padding: 1rem 2rem;
+      background: transparent;
+      border: 1px solid var(--gold3);
+      color: var(--gold);
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.44em;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.45s, border-color 0.45s;
+      margin-top: 0.5rem;
+    }
+    .btn-fill {
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn-text { position: relative; z-index: 1; }
+    .btn-submit:hover .btn-fill { transform: scaleX(1); }
+    .btn-submit:hover { color: var(--bg); border-color: var(--gold); }
+    .btn-submit:disabled { opacity: 0.2; cursor: not-allowed; pointer-events: none; }
+
+    .form-note {
+      margin-top: 1.8rem;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.58rem;
+      color: rgba(74,69,64,0.55);
+      line-height: 2.1;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+
+    .thankyou {
+      display: none;
+      text-align: center;
+      padding: 3.5rem 0 2rem;
+    }
+    .thankyou.on {
+      display: block;
+      animation: up 0.9s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .thankyou-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      letter-spacing: 0.18em;
+      color: var(--gold2);
+      margin-bottom: 1.6rem;
+    }
+    .thankyou-rule {
+      width: 28px; height: 1px;
+      background: var(--gold3);
+      margin: 0 auto 1.8rem;
+    }
+    .thankyou-body {
+      font-weight: 200;
+      font-size: 0.84rem;
+      line-height: 3.1;
+      color: var(--mid);
+      letter-spacing: 0.06em;
+    }
+
+    /* footer (inside s3) */
+    .footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gline);
+      text-align: center;
+      width: 100%;
+    }
+    .footer-logo {
+      height: 24px; width: auto;
+      margin: 0 auto 0.8rem;
+      opacity: 0.15;
+      display: block;
+    }
+    .footer-copy {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.52rem;
+      letter-spacing: 0.26em;
+      color: var(--dim);
+      opacity: 0.5;
+    }
+
+
+    /* ══════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════ */
+
+    @keyframes up {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .fade-in.in { opacity: 1; transform: translateY(0); }
+
+
+    /* ══════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════ */
+
+    @media (max-width: 600px) {
+      .hero-brand {
+        font-size: clamp(3rem, 14vw, 5rem);
+        letter-spacing: 0.1em;
+      }
+      .hero-sub-row { flex-direction: column; gap: 0.8rem; }
+      .hero-line { display: none; }
+      .field-row { grid-template-columns: 1fr; }
+      .seq-num { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ SECTION 01 — HERO ═══════════ -->
+<section class="seq s1" aria-label="メインビジュアル">
+
+  <span class="seq-num seq-num--tl" aria-hidden="true">01 / 03</span>
+  <span class="seq-num seq-num--br" aria-hidden="true">加茂錦酒造</span>
+
+  <div class="hero-inner">
+    <img
+      class="hero-logo fade-in"
+      src="logo.svg"
+      alt="加茂錦 紋章"
+      onerror="this.style.display='none'"
+    >
+    <p class="hero-sup fade-in">Kamonishiki Sake Brewery</p>
+    <h1 class="hero-brand fade-in">BRILLIANCE</h1>
+    <div class="hero-sub-row fade-in">
+      <span class="hero-line" aria-hidden="true"></span>
+      <p class="hero-jp">最上位ブランド、始動。</p>
+      <span class="hero-line" aria-hidden="true"></span>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span>SCROLL</span>
+    <span class="scroll-arrow"></span>
+  </div>
+
+</section>
+
+
+<!-- ═══════════ SECTION 02 — INTRO ═══════════ -->
+<section class="seq s2" aria-label="ご案内">
+
+  <span class="seq-num seq-num--tl" aria-hidden="true">02 / 03</span>
+
+  <div class="intro-inner">
+    <p class="intro-label fade-in">Flagship Sake</p>
+    <div class="intro-text fade-in">
+      <p>当蔵の<span class="em">フラグシップ</span>が、リニューアルいたします。</p>
+      <p>販売のご案内は、事前にご登録いただいた方にのみ直接お届けいたします。</p>
+      <p>ご登録は以下のフォームよりお願いいたします。</p>
+    </div>
+    <div class="intro-cta fade-in">
+      <a class="cta-link" href="#register">
+        <span>REGISTER</span>
+        <span class="cta-link-arrow" aria-hidden="true"></span>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════ SECTION 03 — FORM ═══════════ -->
+<section class="seq s3" id="register" aria-labelledby="form-title">
+
+  <span class="seq-num seq-num--tl" aria-hidden="true" style="position:fixed; top:2rem; left:2rem;">03 / 03</span>
+
+  <div class="form-inner">
+
+    <div class="form-heading">
+      <h2 class="form-title" id="form-title">Waiting List</h2>
+      <p class="form-sub">
+        販売開始時にご案内をお送りいたします。ご登録は購入を確約するものではありません。
+      </p>
+    </div>
+
+    <form id="registrationForm" novalidate>
+      <input type="hidden" name="ref" id="refCode" value="direct">
+
+      <div class="field-row">
+        <div class="field">
+          <label class="field__label" for="last_name">姓<span class="field__req">*</span></label>
+          <input class="field__input" type="text" id="last_name" name="last_name" required placeholder="田中" autocomplete="family-name">
+        </div>
+        <div class="field">
+          <label class="field__label" for="first_name">名<span class="field__req">*</span></label>
+          <input class="field__input" type="text" id="first_name" name="first_name" required placeholder="太郎" autocomplete="given-name">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="field__label" for="last_name_kana">フリガナ（セイ）<span class="field__req">*</span></label>
+          <input class="field__input" type="text" id="last_name_kana" name="last_name_kana" required placeholder="タナカ">
+        </div>
+        <div class="field">
+          <label class="field__label" for="first_name_kana">フリガナ（メイ）<span class="field__req">*</span></label>
+          <input class="field__input" type="text" id="first_name_kana" name="first_name_kana" required placeholder="タロウ">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="email">メールアドレス<span class="field__req">*</span></label>
+        <input class="field__input" type="email" id="email" name="email" required placeholder="example@email.com" autocomplete="email">
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="phone">電話番号<span class="field__req">*</span></label>
+        <input class="field__input" type="tel" id="phone" name="phone" required placeholder="090-0000-0000" autocomplete="tel" maxlength="13">
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="postal_code">郵便番号<span class="field__req">*</span></label>
+        <input class="field__input" type="text" id="postal_code" name="postal_code" required placeholder="000-0000" autocomplete="postal-code" maxlength="8" inputmode="numeric">
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="address">ご住所<span class="field__req">*</span></label>
+        <input class="field__input" type="text" id="address" name="address" required placeholder="都道府県 市区町村 番地" autocomplete="street-address">
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="experience">当蔵のお酒を飲んだことはありますか</label>
+        <select class="field__select" id="experience" name="experience">
+          <option value="" disabled selected>選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+        </select>
+      </div>
+
+      <div class="check-row">
+        <input class="check-box" type="checkbox" id="ageConfirm" required>
+        <label class="check-label" for="ageConfirm">
+          私は20歳以上であることを確認します。<br>
+          また、ご登録いただいた情報は販売のご案内にのみ使用いたします。
+        </label>
+      </div>
+
+      <button class="btn-submit" type="submit" id="submitBtn" disabled>
+        <span class="btn-fill" aria-hidden="true"></span>
+        <span class="btn-text">登録する</span>
+      </button>
+
+      <p class="form-note">
+        ご登録後、確認メールをお送りいたします。<br>
+        販売時期・銘柄・価格は、ご案内時にお知らせいたします。
+      </p>
+    </form>
+
+    <div class="thankyou" id="thankYou" role="status" aria-live="polite">
+      <h2 class="thankyou-title">Thank You</h2>
+      <div class="thankyou-rule" aria-hidden="true"></div>
+      <p class="thankyou-body">
+        ご登録ありがとうございます。<br><br>
+        販売のご案内は、ご登録いただいたメールアドレスに<br>
+        直接お届けいたします。<br><br>
+        今しばらくお待ちくださいませ。
+      </p>
+    </div>
+
+    <footer class="footer">
+      <img class="footer-logo" src="logo.svg" alt="" aria-hidden="true" onerror="this.style.display='none'">
+      <p class="footer-copy">© 2026 加茂錦酒造株式会社</p>
+    </footer>
+
+  </div>
+
+</section>
+
+
+<script>
+  /* ref tracking */
+  (function() {
+    var ref = new URLSearchParams(window.location.search).get('ref') || 'direct';
+    document.getElementById('refCode').value = ref;
+  })();
+
+  /* fade-in on load */
+  window.addEventListener('load', function() {
+    document.querySelectorAll('.s1 .fade-in').forEach(function(el, i) {
+      setTimeout(function() { el.classList.add('in'); }, 200 + i * 180);
+    });
+  });
+
+  /* fade-in on section intersection */
+  (function() {
+    if (!window.IntersectionObserver) {
+      document.querySelectorAll('.fade-in').forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.s2 .fade-in, .s3 .fade-in').forEach(function(el){ io.observe(el); });
+  })();
+
+  /* checkbox → enable submit */
+  var box = document.getElementById('ageConfirm');
+  var btn = document.getElementById('submitBtn');
+  box.addEventListener('change', function() { btn.disabled = !this.checked; });
+
+  /* form submit */
+  document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var data = Object.fromEntries(new FormData(this).entries());
+    console.log('[BRILLIANCE WL]', data);
+    var form = this;
+    var heading = document.querySelector('.form-heading');
+    [form, heading].forEach(function(el) {
+      if (!el) return;
+      el.style.transition = 'opacity 0.4s';
+      el.style.opacity = '0';
+    });
+    setTimeout(function() {
+      form.style.display = 'none';
+      if (heading) heading.style.display = 'none';
+      var ty = document.getElementById('thankYou');
+      ty.classList.add('on');
+    }, 420);
+  });
+
+  /* postal auto-format */
+  document.getElementById('postal_code').addEventListener('input', function() {
+    var v = this.value.replace(/\D/g,'').slice(0,7);
+    this.value = v.length > 3 ? v.slice(0,3)+'-'+v.slice(3) : v;
+  });
+
+  /* phone auto-format */
+  document.getElementById('phone').addEventListener('input', function() {
+    var v = this.value.replace(/\D/g,'').slice(0,11);
+    if      (v.length > 7) v = v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7);
+    else if (v.length > 3) v = v.slice(0,3)+'-'+v.slice(3);
+    this.value = v;
+  });
+</script>
+
+</body>
+</html>
