@@ -334,6 +334,96 @@
     }
     .field__sel option { background: #111; color: var(--text); }
 
+    /* ── カスタムドロップダウン (PC用) ── */
+    .csel {
+      position: relative;
+    }
+    /* ネイティブselectはPC時に非表示 */
+    @media (min-width: 861px) {
+      .csel .field__sel { display: none; }
+    }
+
+    .csel__trigger {
+      display: none;
+    }
+    @media (min-width: 861px) {
+      .csel__trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 0.08rem 0;
+        color: var(--mid);
+        font-family: 'Noto Serif JP', serif;
+        font-weight: 300;
+        font-size: 0.88rem;
+        letter-spacing: 0.04em;
+        text-align: left;
+      }
+      .csel__trigger.selected {
+        color: var(--text);
+        font-size: 1rem;
+      }
+    }
+
+    .csel__arrow {
+      width: 10px;
+      height: 10px;
+      flex-shrink: 0;
+      margin-left: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+    .csel.open .csel__arrow {
+      transform: rotate(180deg);
+    }
+
+    .csel__list {
+      display: none;
+      position: absolute;
+      top: calc(100% + 1px);
+      left: -2rem;
+      right: -2rem;
+      background: #0f0f0f;
+      border: 1px solid var(--gline);
+      border-top: 1px solid var(--gold-l);
+      z-index: 100;
+      overflow: hidden;
+    }
+    .csel.open .csel__list {
+      display: block;
+      animation: fadeUp 0.22s ease forwards;
+    }
+
+    .csel__opt {
+      display: block;
+      width: 100%;
+      padding: 1rem 2rem;
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 300;
+      font-size: 0.96rem;
+      letter-spacing: 0.06em;
+      color: var(--mid);
+      text-align: left;
+      transition: color 0.2s, background 0.2s;
+      border-bottom: 1px solid rgba(78,73,68,0.2);
+    }
+    .csel__opt:last-child { border-bottom: none; }
+    .csel__opt:hover {
+      color: var(--text);
+      background: rgba(196,160,80,0.05);
+    }
+    .csel__opt.selected {
+      color: var(--gold);
+    }
+
     .check-row {
       display: flex;
       align-items: flex-start;
@@ -770,11 +860,25 @@
         <!-- ══ 共通フィールド（下）: 飲酒経験・年齢確認・送信 ══ -->
         <div class="field">
           <label class="field__lbl" for="experience">当蔵のお酒を飲んだことはありますか</label>
-          <select class="field__sel" id="experience" name="experience">
-            <option value="" disabled selected>選択してください</option>
-            <option value="yes">はい</option>
-            <option value="no">いいえ</option>
-          </select>
+          <div class="csel" id="cselExperience">
+            <!-- PC: カスタムUI -->
+            <button type="button" class="csel__trigger" id="cselTrigger" aria-haspopup="listbox" aria-expanded="false">
+              <span id="cselValue">選択してください</span>
+              <svg class="csel__arrow" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="0.8"/>
+              </svg>
+            </button>
+            <div class="csel__list" role="listbox" id="cselList">
+              <button type="button" class="csel__opt" role="option" data-value="yes">はい</button>
+              <button type="button" class="csel__opt" role="option" data-value="no">いいえ</button>
+            </div>
+            <!-- モバイル & フォーム送信用ネイティブselect -->
+            <select class="field__sel" id="experience" name="experience">
+              <option value="" disabled selected>選択してください</option>
+              <option value="yes">はい</option>
+              <option value="no">いいえ</option>
+            </select>
+          </div>
         </div>
 
         <div class="check-row">
@@ -858,6 +962,55 @@
     /* initialise: houjin fields must NOT be required on load */
     houjinFields.forEach(function(f){ f.required = false; });
   })();
+
+  /* ── カスタムドロップダウン ── */
+  (function(){
+    var csel     = document.getElementById('cselExperience');
+    var trigger  = document.getElementById('cselTrigger');
+    var valueEl  = document.getElementById('cselValue');
+    var list     = document.getElementById('cselList');
+    var nativeSel = document.getElementById('experience');
+
+    function open() {
+      csel.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+    function close() {
+      csel.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    trigger.addEventListener('click', function(e){
+      e.stopPropagation();
+      csel.classList.contains('open') ? close() : open();
+    });
+
+    list.querySelectorAll('.csel__opt').forEach(function(opt) {
+      opt.addEventListener('click', function(){
+        var val   = this.dataset.value;
+        var label = this.textContent;
+        /* ネイティブselectと同期 */
+        nativeSel.value = val;
+        /* UI更新 */
+        valueEl.textContent = label;
+        trigger.classList.add('selected');
+        list.querySelectorAll('.csel__opt').forEach(function(o){ o.classList.remove('selected'); });
+        this.classList.add('selected');
+        close();
+      });
+    });
+
+    /* 外側クリックで閉じる */
+    document.addEventListener('click', function(){ close(); });
+    csel.addEventListener('click', function(e){ e.stopPropagation(); });
+  })();
+
+  /* select: shrink placeholder text, restore on real selection */
+  document.querySelectorAll('.field__sel').forEach(function(sel){
+    function update(){ sel.classList.toggle('has-value', sel.value !== ''); }
+    sel.addEventListener('change', update);
+    update();
+  });
 
   /* checkbox → enable submit */
   var box = document.getElementById('ageConfirm');
