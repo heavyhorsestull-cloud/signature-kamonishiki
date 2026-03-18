@@ -6,6 +6,25 @@
   <meta name="robots" content="noindex, nofollow">
   <title>加茂錦酒造 | Flagship</title>
 
+  <style>
+    /* ── コピー・選択・ドラッグ禁止 ── */
+    * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    /* フォーム入力欄のみ許可 */
+    input, select, textarea {
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+      -webkit-user-drag: auto;
+    }
+  </style>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400;500&family=Zen+Kaku+Gothic+New:wght@300;400&display=swap" rel="stylesheet">
@@ -83,23 +102,11 @@
     }
 
     .panel__logo {
-      height: 74px;
+      height: 96px;
       width: auto;
-      margin-bottom: 1.4rem;
-      opacity: 0;
-      animation: fadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 0.1s forwards;
-    }
-
-    .panel__kura {
-      font-family: 'Noto Serif JP', serif;
-      font-weight: 300;
-      font-size: clamp(0.94rem, 1.6vw, 1.1rem);
-      letter-spacing: 0.45em;
-      color: var(--mid);
-      margin-right: -0.45em;
       margin-bottom: 2rem;
       opacity: 0;
-      animation: fadeUp 1.2s ease 0.4s forwards;
+      animation: fadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 0.1s forwards;
     }
 
     .panel__rule {
@@ -108,7 +115,7 @@
       background: linear-gradient(to right, transparent, var(--gold-l), transparent);
       margin-bottom: 2rem;
       opacity: 0;
-      animation: fadeIn 1.5s ease 0.7s forwards;
+      animation: fadeIn 1.5s ease 0.5s forwards;
     }
 
     .panel__sub {
@@ -119,7 +126,7 @@
       margin-right: -0.22em;
       margin-bottom: 1rem;
       opacity: 0;
-      animation: fadeUp 1.2s ease 0.9s forwards;
+      animation: fadeUp 1.2s ease 0.7s forwards;
     }
 
     .panel__brand {
@@ -132,7 +139,7 @@
       margin-right: -0.2em;
       margin-bottom: 2rem;
       opacity: 0;
-      animation: fadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 1.1s forwards;
+      animation: fadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 0.9s forwards;
     }
 
     .panel__detail {
@@ -143,7 +150,7 @@
       line-height: 2.2;
       margin-bottom: 0.5rem;
       opacity: 0;
-      animation: fadeUp 1.2s ease 1.3s forwards;
+      animation: fadeUp 1.2s ease 1.1s forwards;
     }
 
     .panel__season {
@@ -154,7 +161,7 @@
       letter-spacing: 0.18em;
       color: var(--mid);
       opacity: 0;
-      animation: fadeUp 1.2s ease 1.5s forwards;
+      animation: fadeUp 1.2s ease 1.3s forwards;
     }
 
     .panel__link {
@@ -173,7 +180,7 @@
       color: var(--mid);
       text-transform: uppercase;
       opacity: 0;
-      animation: fadeIn 1.5s ease 2s forwards;
+      animation: fadeIn 1.5s ease 1.8s forwards;
       transition: color 0.4s;
       white-space: nowrap;
     }
@@ -462,26 +469,9 @@
 
       /* logo: larger for mobile hero */
       .panel__logo {
-        height: 100px;
-        margin-bottom: 1.6rem;
-        /* override desktop animation to avoid fighting mobile layout */
+        height: 124px;
+        margin-bottom: 2rem;
         animation: fadeIn 1.2s ease 0.2s both;
-      }
-
-      /* 加茂錦酒造 */
-      .panel__kura {
-        font-size: 0.98rem;
-        letter-spacing: 0.5em;
-        margin-bottom: 0;
-        animation: fadeUp 1.1s ease 0.5s both;
-      }
-
-      /* decorative thread between kura and sub */
-      .panel__thread {
-        width: 1px;
-        height: 36px;
-        background: linear-gradient(to bottom, var(--gold-l), transparent);
-        margin: 1.4rem auto;
       }
 
       /* 最上位ブランド、始動。 */
@@ -490,7 +480,7 @@
         letter-spacing: 0.28em;
         color: var(--mid);
         margin-bottom: 1.6rem;
-        animation: fadeUp 1.1s ease 0.7s both;
+        animation: fadeUp 1.1s ease 0.6s both;
       }
 
       /* BRILLIANCE — large hero size */
@@ -499,7 +489,7 @@
         letter-spacing: 0.18em;
         margin-right: -0.18em;
         margin-bottom: 1.8rem;
-        animation: fadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 0.9s both;
+        animation: fadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 0.8s both;
       }
 
       .panel__detail {
@@ -507,13 +497,13 @@
         font-size: min(0.92rem, calc((100vw - 68px) / 23));
         letter-spacing: 0;
         line-height: 2.4;
-        animation: fadeUp 1.1s ease 1.1s both;
+        animation: fadeUp 1.1s ease 1.0s both;
       }
 
       .panel__season {
         font-size: 0.92rem;
         margin-top: 0.4rem;
-        animation: fadeUp 1.1s ease 1.3s both;
+        animation: fadeUp 1.1s ease 1.2s both;
       }
 
       /* scroll hint — shown only on mobile */
@@ -527,7 +517,7 @@
         font-size: 0.64rem;
         letter-spacing: 0.5em;
         margin-top: 2.4rem;
-        animation: fadeIn 1.5s ease 1.8s both;
+        animation: fadeIn 1.5s ease 1.6s both;
       }
       .panel__link::after {
         content: '';
@@ -581,13 +571,6 @@
       .panel__brand { letter-spacing: 0.1em; margin-right: -0.1em; }
     }
 
-    /* hide thread element on desktop */
-    .panel__thread {
-      display: none;
-    }
-    @media (max-width: 860px) {
-      .panel__thread { display: block; }
-    }
 
     /* ═══════════════════════════════════════
        SEGMENTED TOGGLE  (個人 / 飲食店・業者)
@@ -666,9 +649,7 @@
 
   <!-- ══════ LEFT PANEL / MOBILE HERO ══════ -->
   <aside class="panel">
-    <img class="panel__logo" src="logo.svg" alt="加茂錦 紋章" onerror="this.style.display='none'">
-    <p class="panel__kura">加茂錦酒造</p>
-    <div class="panel__thread" aria-hidden="true"></div>
+    <img class="panel__logo" src="logo.svg" alt="加茂錦 紋章" draggable="false" onerror="this.style.display='none'">
     <div class="panel__rule" aria-hidden="true"></div>
     <p class="panel__sub">最上位ブランド、始動。</p>
     <h1 class="panel__brand">BRILLIANCE</h1>
@@ -922,6 +903,22 @@
     }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
     document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
   })();
+
+  /* ── コピー・ドラッグ・右クリック禁止 ── */
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+  document.addEventListener('dragstart',   function(e){ e.preventDefault(); });
+  document.addEventListener('selectstart', function(e){
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'SELECT' || t.tagName === 'TEXTAREA')) return;
+    e.preventDefault();
+  });
+  document.addEventListener('keydown', function(e){
+    var t = document.activeElement;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'SELECT' || t.tagName === 'TEXTAREA')) return;
+    if ((e.ctrlKey || e.metaKey) && ['c','a','s','u','p'].indexOf(e.key.toLowerCase()) !== -1) {
+      e.preventDefault();
+    }
+  });
 </script>
 
 </body>
