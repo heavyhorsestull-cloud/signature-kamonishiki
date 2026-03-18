@@ -322,6 +322,19 @@
       caret-color: var(--gold);
     }
     .field__input::placeholder { color: rgba(78,73,68,0.45); font-weight: 200; font-size: 0.88rem; }
+
+    .postal-hint {
+      display: block;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      min-height: 1.2em;
+      margin-top: 0.3rem;
+      opacity: 0.8;
+    }
+    .postal-hint.error { color: #c07060; }
     .field__sel { font-size: 0.8rem; }
     .field__sel.has-value { font-size: 0.9rem; }
     .field__sel {
@@ -727,6 +740,7 @@
         <div class="field">
           <label class="field__lbl" for="postal_code">郵便番号<span class="field__req">*</span></label>
           <input class="field__input" type="text" id="postal_code" name="postal_code" required placeholder="000-0000" autocomplete="postal-code" maxlength="8" inputmode="numeric">
+          <span class="postal-hint" id="postalHint"></span>
         </div>
 
         <!-- ══ 個人グループ: ご住所 (default: visible) ══ -->
@@ -869,11 +883,55 @@
     }, 420);
   });
 
-  /* postal auto-format */
-  document.getElementById('postal_code').addEventListener('input', function(){
-    var v = this.value.replace(/\D/g,'').slice(0,7);
-    this.value = v.length > 3 ? v.slice(0,3)+'-'+v.slice(3) : v;
-  });
+  /* postal auto-format + 住所自動入力 (zipcloud API) */
+  (function(){
+    var postalInput = document.getElementById('postal_code');
+    var hint        = document.getElementById('postalHint');
+
+    function setHint(msg, isError) {
+      hint.textContent = msg;
+      hint.className   = 'postal-hint' + (isError ? ' error' : '');
+    }
+
+    function fillAddress(addr) {
+      /* 現在表示中のグループに応じてターゲットフィールドを決定 */
+      var isHoujin = document.getElementById('grpHoujin').style.display !== 'none';
+      var target   = document.getElementById(isHoujin ? 'shop_address' : 'address');
+      if (target && !target.value) {
+        target.value = addr;
+      }
+    }
+
+    postalInput.addEventListener('input', function(){
+      /* フォーマット */
+      var digits = this.value.replace(/\D/g,'').slice(0,7);
+      this.value = digits.length > 3 ? digits.slice(0,3)+'-'+digits.slice(3) : digits;
+
+      /* 7桁揃ったらAPI呼び出し */
+      if (digits.length !== 7) {
+        setHint('');
+        return;
+      }
+
+      setHint('検索中…');
+
+      fetch('https://zipcloud.ibsnet.co.jp/api/search?zipcode=' + digits)
+        .then(function(res){ return res.json(); })
+        .then(function(data){
+          if (data.status !== 200 || !data.results) {
+            setHint('該当する住所が見つかりませんでした。', true);
+            return;
+          }
+          var r   = data.results[0];
+          var addr = (r.address1 || '') + (r.address2 || '') + (r.address3 || '');
+          fillAddress(addr);
+          setHint('');
+        })
+        .catch(function(){
+          setHint('住所の取得に失敗しました。', true);
+        });
+    });
+  })();
 
   /* select: shrink placeholder text, restore on real selection */
   document.querySelectorAll('.field__sel').forEach(function(sel){
