@@ -126,13 +126,12 @@
     }
 
     .panel__brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      letter-spacing: 0.2em;
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 200;
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      letter-spacing: 0.22em;
       color: var(--gold-h);
-      line-height: 1;
-      margin-right: -0.2em;
+      line-height: 1.6;
       margin-bottom: 2rem;
     }
 
@@ -143,6 +142,16 @@
       color: var(--mid);
       line-height: 2.2;
       margin-bottom: 0.5rem;
+    }
+
+    .panel__col-name {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.72rem, 1.1vw, 0.82rem);
+      letter-spacing: 0.38em;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
     }
 
     .panel__season {
@@ -192,7 +201,6 @@
       padding: 7rem 2rem 6rem;
       max-width: 740px;
       margin: 0 auto;
-      text-align: center;
     }
 
     .intro__label {
@@ -226,8 +234,27 @@
       line-break: strict;
       text-wrap: wrap;
       overflow-wrap: anywhere;
+      text-align: left;
     }
     .intro__text p + p { margin-top: 1.6em; }
+
+    .intro__founder {
+      margin-top: 2.4em;
+      text-align: right;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      color: var(--mid);
+      line-height: 2.4;
+    }
+    .intro__founder .founder-name {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 300;
+      font-size: 0.92rem;
+      letter-spacing: 0.12em;
+      color: var(--text);
+    }
 
     /* form section */
     .form-sec {
@@ -434,11 +461,10 @@
         margin-bottom: 1.6rem;
       }
 
-      /* BRILLIANCE — large hero size */
+      /* 日本を、醸す。 — mobile hero size */
       .panel__brand {
-        font-size: clamp(2rem, 10vw, 7.5rem);
-        letter-spacing: 0.18em;
-        margin-right: -0.18em;
+        font-size: clamp(1.6rem, 7vw, 3rem);
+        letter-spacing: 0.22em;
         margin-bottom: 1.8rem;
       }
 
@@ -479,15 +505,9 @@
         padding: 5rem 2rem 4rem;
         max-width: 100%;
         margin: 0;
-        text-align: center;
       }
-      .intro__label {
-        justify-content: center;
-      }
-      .intro__label::before { display: none; }
 
       .intro__text {
-        text-align: center;
         text-wrap: wrap;
         letter-spacing: 0.02em;
       }
@@ -510,10 +530,6 @@
       }
     }
 
-    /* narrow phones: tighten BRILLIANCE letter-spacing */
-    @media (max-width: 600px) {
-      .panel__brand { letter-spacing: 0.1em; margin-right: -0.1em; }
-    }
 
 
     /* ═══════════════════════════════════════
@@ -592,9 +608,9 @@
   <aside class="panel">
     <img class="panel__logo" src="logo.svg" alt="加茂錦 紋章" draggable="false" onerror="this.style.display='none'">
     <div class="panel__rule" aria-hidden="true"></div>
-    <p class="panel__sub">日本を、醸す。</p>
-    <h1 class="panel__brand">BRILLIANCE</h1>
+    <h1 class="panel__brand">日本を、醸す。</h1>
     <p class="panel__detail">美しい稲作を、生産者から杜氏へ。<br>届けたい日本の心がある。</p>
+    <p class="panel__col-name">Signature Collection</p>
     <p class="panel__season">Coming Soon, Winter 2026</p>
     <a class="panel__link" href="#register">REGISTER</a>
   </aside>
@@ -603,11 +619,15 @@
   <div class="content">
 
     <section class="intro" aria-label="ご案内">
-      <p class="intro__label">Info</p>
       <div class="intro__text">
-        <p>当蔵は「日本を、醸す。」をテーマに、新潟、兵庫、岡山、秋田…<span class="mb-br"><br></span>全国各地の生産者のもとへ足を運び、その土地が育む多彩な酒造好適米の個性を一つの蔵から醸しています。</p>
-        <p>國酒を醸す者として、生産者の気概と日本の美しい田園風景を<span class="mb-br"><br></span>一口一滴に込め、愛飲家の皆さまにお届けしたい。</p>
-        <p>好みの壁を超え、世代や国籍にかかわらず、<span class="mb-br"><br></span>これからも心を動かす日本酒を目指して参ります。</p>
+        <p>当蔵は「日本を、醸す。」をテーマに、<br>新潟、兵庫、岡山、秋田…全国各地の生産者のもとへ足を運び、<br>その土地が育む多彩な酒造好適米の個性を<br>一つの蔵から醸しています。</p>
+        <p>國酒を醸す者として、生産者の気概と<br>日本の美しい田園風景を一口一滴に込め、<br>愛飲家の皆さまにお届けしたい。</p>
+        <p>好みの壁を超え、世代や国籍にかかわらず、<br>これからも心を動かす日本酒を目指して参ります。</p>
+        <div class="intro__founder">
+          <p>加茂錦酒造株式会社</p>
+          <p>代表取締役 / 醸造責任者</p>
+          <p class="founder-name">田中悠一</p>
+        </div>
       </div>
     </section>
 
@@ -797,23 +817,22 @@
     var tl = gsap.timeline({ delay: 0.15 });
     tl.from('.panel__logo',   { opacity: 0, y: 18, duration: 1.4, ease: 'power3.out' })
       .from('.panel__rule',   { opacity: 0, scaleX: 0, transformOrigin: 'left center', duration: 1.0, ease: 'power2.inOut' }, '-=0.8')
-      .from('.panel__sub',    { opacity: 0, y: 12, duration: 1.1, ease: 'power3.out' }, '-=0.6')
       .fromTo('.panel__brand',
         { opacity: 0, y: 16, filter: 'blur(8px)' },
-        { opacity: 1, y: 0,  filter: 'blur(0px)', duration: 1.8, ease: 'power3.out' }, '-=0.7')
+        { opacity: 1, y: 0,  filter: 'blur(0px)', duration: 1.8, ease: 'power3.out' }, '-=0.6')
       .from('.panel__detail', { opacity: 0, y: 12, duration: 1.1, ease: 'power2.out' }, '-=0.9')
-      .from('.panel__season', { opacity: 0, y: 10, duration: 1.0, ease: 'power2.out' }, '-=0.7')
+      .from('.panel__col-name, .panel__season', { opacity: 0, y: 10, duration: 1.0, ease: 'power2.out', stagger: 0.15 }, '-=0.7')
       .from('.panel__link',   { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '-=0.6');
 
     gsap.to('.panel__logo', { y: -6, duration: 3.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2 });
 
-    gsap.from('.intro__label', {
-      scrollTrigger: { trigger: '.intro__label', start: 'top 88%' },
-      opacity: 0, y: 18, duration: 1.0, ease: 'power3.out'
-    });
     gsap.from('.intro__text p', {
       scrollTrigger: { trigger: '.intro__text', start: 'top 85%' },
       opacity: 0, y: 16, duration: 1.0, stagger: 0.18, ease: 'power3.out'
+    });
+    gsap.from('.intro__founder', {
+      scrollTrigger: { trigger: '.intro__founder', start: 'top 90%' },
+      opacity: 0, y: 12, duration: 1.0, ease: 'power2.out'
     });
     gsap.from('.form-title', {
       scrollTrigger: { trigger: '.form-title', start: 'top 88%' },
