@@ -204,26 +204,53 @@
       margin: 0 auto;
     }
 
-    .intro__label {
+    .intro__hero {
+      text-align: center;
+      margin-bottom: 4.5rem;
+    }
+
+    .intro__hero-rule {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, var(--gold-l), transparent);
+      margin: 0 auto 2.2rem;
+    }
+
+    .intro__hero-label {
       font-family: 'Zen Kaku Gothic New', sans-serif;
       font-weight: 300;
-      font-size: 0.9rem;
-      letter-spacing: 0.5em;
-      color: var(--mid);
+      font-size: 0.68rem;
+      letter-spacing: 0.55em;
+      color: var(--dim);
       text-transform: uppercase;
-      margin-bottom: 2.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
+      margin-bottom: 1.4rem;
     }
-    .intro__label::before {
-      content: '';
-      display: block;
-      width: 20px;
+
+    .intro__hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing: 0.14em;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 1.6rem;
+    }
+
+    .intro__hero-sub {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 200;
+      font-size: clamp(0.78rem, 1.2vw, 0.88rem);
+      letter-spacing: 0.18em;
+      color: var(--mid);
+      margin-right: -0.18em;
+    }
+
+    .intro__hero-rule2 {
+      width: 36px;
       height: 1px;
-      background: var(--mid);
-      flex-shrink: 0;
+      background: linear-gradient(to right, transparent, var(--gold-l), transparent);
+      margin: 2.2rem auto 0;
     }
 
     .intro__text {
@@ -613,6 +640,15 @@
   <div class="content">
 
     <section class="intro" aria-label="ご案内">
+
+      <div class="intro__hero">
+        <div class="intro__hero-rule" aria-hidden="true"></div>
+        <p class="intro__hero-label">Signature Collection</p>
+        <p class="intro__hero-title">The Essence of Japan,<br>Crafted into Sake.</p>
+        <p class="intro__hero-sub">全国の風土を一つの蔵から</p>
+        <div class="intro__hero-rule2" aria-hidden="true"></div>
+      </div>
+
       <div class="intro__text">
         <p>当蔵は「日本を、醸す。」をテーマに、<br>新潟、兵庫、岡山、秋田…全国各地の生産者のもとへ足を運び、<br>その土地が育む多彩な酒造好適米の個性を<br>一つの蔵から醸しています。</p>
         <p>國酒を醸す者として、生産者の気概と<br>日本の美しい田園風景を一口一滴に込め、<br>愛飲家の皆さまにお届けしたい。</p>
@@ -817,6 +853,27 @@
       .from('.panel__link',   { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '-=0.6');
 
     gsap.to('.panel__logo', { y: -6, duration: 3.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2 });
+
+    gsap.from('.intro__hero-rule', {
+      scrollTrigger: { trigger: '.intro__hero', start: 'top 85%' },
+      opacity: 0, scaleY: 0, transformOrigin: 'top center', duration: 1.0, ease: 'power2.inOut'
+    });
+    gsap.from('.intro__hero-label', {
+      scrollTrigger: { trigger: '.intro__hero', start: 'top 80%' },
+      opacity: 0, y: 10, duration: 0.9, delay: 0.3, ease: 'power2.out'
+    });
+    gsap.from('.intro__hero-title', {
+      scrollTrigger: { trigger: '.intro__hero', start: 'top 80%' },
+      opacity: 0, y: 16, filter: 'blur(6px)', duration: 1.2, delay: 0.5, ease: 'power3.out'
+    });
+    gsap.from('.intro__hero-sub', {
+      scrollTrigger: { trigger: '.intro__hero', start: 'top 80%' },
+      opacity: 0, y: 10, duration: 0.9, delay: 0.7, ease: 'power2.out'
+    });
+    gsap.from('.intro__hero-rule2', {
+      scrollTrigger: { trigger: '.intro__hero', start: 'top 80%' },
+      opacity: 0, scaleX: 0, transformOrigin: 'center', duration: 0.8, delay: 0.9, ease: 'power2.inOut'
+    });
 
     gsap.from('.intro__text p', {
       scrollTrigger: { trigger: '.intro__text', start: 'top 85%' },
