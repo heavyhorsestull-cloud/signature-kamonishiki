@@ -204,52 +204,11 @@
       margin: 0 auto;
     }
 
-    .intro__ornament {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 4.5rem;
-    }
-
-    .intro__orn-vline {
-      width: 1px;
-      height: 54px;
-      background: linear-gradient(to bottom, transparent, var(--gold-l));
-    }
-
-    .intro__orn-diamond {
-      width: 7px;
-      height: 7px;
-      border: 1px solid var(--gold-l);
-      transform: rotate(45deg);
-      margin: 12px 0;
-    }
-
-    .intro__orn-hlines {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .intro__orn-hline {
-      width: 28px;
+    .intro__rule {
+      width: 40px;
       height: 1px;
       background: linear-gradient(to right, transparent, var(--gold-l), transparent);
-    }
-
-    .intro__orn-dot {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: var(--gold-l);
-      opacity: 0.6;
-    }
-
-    .intro__orn-vline2 {
-      width: 1px;
-      height: 54px;
-      background: linear-gradient(to top, transparent, var(--gold-l));
-      margin-top: 12px;
+      margin: 0 auto 4.5rem;
     }
 
     .intro__text {
@@ -640,16 +599,7 @@
 
     <section class="intro" aria-label="ご案内">
 
-      <div class="intro__ornament" aria-hidden="true">
-        <div class="intro__orn-vline"></div>
-        <div class="intro__orn-diamond"></div>
-        <div class="intro__orn-hlines">
-          <span class="intro__orn-hline"></span>
-          <span class="intro__orn-dot"></span>
-          <span class="intro__orn-hline"></span>
-        </div>
-        <div class="intro__orn-vline2"></div>
-      </div>
+      <div class="intro__rule" aria-hidden="true"></div>
 
       <div class="intro__text">
         <p>当蔵は「日本を、醸す。」をテーマに、<br>新潟、兵庫、岡山、秋田…全国各地の生産者のもとへ足を運び、<br>その土地が育む多彩な酒造好適米の個性を<br>一つの蔵から醸しています。</p>
@@ -856,25 +806,9 @@
 
     gsap.to('.panel__logo', { y: -6, duration: 3.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2 });
 
-    gsap.from('.intro__orn-vline', {
-      scrollTrigger: { trigger: '.intro__ornament', start: 'top 85%' },
-      scaleY: 0, transformOrigin: 'top center', duration: 1.0, ease: 'power2.inOut'
-    });
-    gsap.from('.intro__orn-diamond', {
-      scrollTrigger: { trigger: '.intro__ornament', start: 'top 80%' },
-      opacity: 0, scale: 0, rotation: 45, duration: 0.8, delay: 0.4, ease: 'back.out(1.4)'
-    });
-    gsap.from('.intro__orn-hline', {
-      scrollTrigger: { trigger: '.intro__ornament', start: 'top 80%' },
-      scaleX: 0, opacity: 0, duration: 0.7, delay: 0.6, stagger: 0.1, ease: 'power2.out'
-    });
-    gsap.from('.intro__orn-dot', {
-      scrollTrigger: { trigger: '.intro__ornament', start: 'top 80%' },
-      opacity: 0, scale: 0, duration: 0.5, delay: 0.8, ease: 'power2.out'
-    });
-    gsap.from('.intro__orn-vline2', {
-      scrollTrigger: { trigger: '.intro__ornament', start: 'top 80%' },
-      scaleY: 0, transformOrigin: 'top center', duration: 1.0, delay: 0.7, ease: 'power2.inOut'
+    gsap.from('.intro__rule', {
+      scrollTrigger: { trigger: '.intro__rule', start: 'top 88%' },
+      scaleX: 0, opacity: 0, duration: 1.0, ease: 'power2.inOut'
     });
 
     gsap.from('.intro__text p', {
