@@ -4,7 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>加茂錦酒造 | Flagship — GSAP v2</title>
+  <title>加茂錦酒造 | Signature Collection</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <meta property="og:title" content="加茂錦酒造 Signature Collection">
+  <meta property="og:description" content="日本を、醸す。全国各地の酒造好適米の個性を一つの蔵から。">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="加茂錦酒造">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L3T2BGYVP2"></script>
@@ -51,7 +56,7 @@
       --gline:  rgba(196,160,80,0.14);
       --text:   #ede8df;
       --mid:    #aca69b;
-      --dim:    #4e4944;
+      --dim:    #7a736c;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -194,14 +199,16 @@
       transition: color 0.4s;
       white-space: nowrap;
     }
-    .panel__link:hover { color: var(--gold); }
+    .panel__link:hover { color: var(--gold); letter-spacing: 0.55em; }
     .panel__link::after {
       content: '';
       display: block;
       width: 20px;
       height: 1px;
       background: currentColor;
+      transition: width 0.4s ease, background 0.4s ease;
     }
+    .panel__link:hover::after { width: 36px; background: var(--gold); }
 
     /* RIGHT — scrollable content */
     .content {
@@ -226,7 +233,7 @@
     .intro__text {
       font-weight: 200;
       font-size: clamp(0.84rem, 1.4vw, 0.96rem);
-      line-height: 2.9;
+      line-height: 2.2;
       letter-spacing: 0.07em;
       color: var(--mid);
       line-break: strict;
@@ -234,7 +241,7 @@
       overflow-wrap: anywhere;
       text-align: left;
     }
-    .intro__text p + p { margin-top: 1.6em; }
+    .intro__text p + p { margin-top: 1.8em; }
 
     .intro__founder {
       margin-top: 2.4em;
@@ -408,6 +415,16 @@
     }
     .footer__links a:hover { color: var(--gold); }
     .footer__links svg { width: 18px; height: 18px; }
+    .footer__links .footer__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+    }
 
     /* reveal — GSAP ScrollTrigger で制御 */
 
@@ -531,7 +548,7 @@
       .pc-br { display: none; }
 
       .form-sub {
-        font-size: 0.72rem;
+        font-size: 0.875rem;
       }
 
       .form-sec {
@@ -664,6 +681,7 @@
     <section class="form-sec" id="register" aria-labelledby="form-title">
 
       <div>
+        <h2 class="form-title" id="form-title">Register</h2>
         <p class="form-sub">ご登録いただいた方へ、蔵からご案内いたします。<br>全ての醸造作品は最高の状態で蔵元より直送いたします。</p>
       </div>
 
@@ -727,11 +745,13 @@
         <a href="https://www.instagram.com/kamonishiki_official/" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         </a>
-        <a href="https://dancyu.jp/read/2026_00010287.html" target="_blank" rel="noopener" aria-label="dancyu 記事1">
+        <a href="https://dancyu.jp/read/2026_00010287.html" target="_blank" rel="noopener" aria-label="dancyu 記事1" class="footer__label">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM7 17v-2h10v2H7zm0-4v-2h10v2H7z"/></svg>
+          <span>dancyu vol.1</span>
         </a>
-        <a href="https://dancyu.jp/read/2026_00010286.html" target="_blank" rel="noopener" aria-label="dancyu 記事2">
+        <a href="https://dancyu.jp/read/2026_00010286.html" target="_blank" rel="noopener" aria-label="dancyu 記事2" class="footer__label">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM7 17v-2h10v2H7zm0-4v-2h10v2H7z"/></svg>
+          <span>dancyu vol.2</span>
         </a>
       </div>
     </footer>
