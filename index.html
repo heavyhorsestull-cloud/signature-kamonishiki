@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>加茂錦酒造 | Flagship</title>
+  <title>加茂錦酒造 | Flagship — GSAP v2</title>
 
   <style>
     /* ── コピー・選択・ドラッグ禁止 ── */
@@ -28,6 +28,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400;500&family=Zen+Kaku+Gothic+New:wght@300;400&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
 
@@ -102,11 +104,9 @@
     }
 
     .panel__logo {
-      height: 96px;
+      height: 120px;
       width: auto;
       margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 0.1s forwards;
     }
 
     .panel__rule {
@@ -114,8 +114,6 @@
       height: 1px;
       background: linear-gradient(to right, transparent, var(--gold-l), transparent);
       margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeIn 1.5s ease 0.5s forwards;
     }
 
     .panel__sub {
@@ -125,21 +123,19 @@
       color: var(--mid);
       margin-right: -0.22em;
       margin-bottom: 1rem;
-      opacity: 0;
-      animation: fadeUp 1.2s ease 0.7s forwards;
     }
 
     .panel__brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      letter-spacing: 0.2em;
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 200;
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      letter-spacing: 0.22em;
+      margin-right: -0.22em;
       color: var(--gold-h);
-      line-height: 1;
-      margin-right: -0.2em;
+      line-height: 1.6;
       margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 0.9s forwards;
+      position: relative;
+      left: 0.15em;
     }
 
     .panel__detail {
@@ -149,19 +145,26 @@
       color: var(--mid);
       line-height: 2.2;
       margin-bottom: 0.5rem;
-      opacity: 0;
-      animation: fadeUp 1.2s ease 1.1s forwards;
+    }
+
+    .panel__col-name {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.72rem, 1.1vw, 0.82rem);
+      letter-spacing: 0.38em;
+      color: var(--mid);
+      text-transform: uppercase;
+      margin-top: 1.6rem;
+      margin-bottom: 0.4rem;
     }
 
     .panel__season {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
       font-weight: 300;
-      font-style: italic;
-      font-size: clamp(0.84rem, 1.3vw, 0.96rem);
-      letter-spacing: 0.18em;
+      font-size: clamp(0.72rem, 1.1vw, 0.82rem);
+      letter-spacing: 0.38em;
       color: var(--mid);
-      opacity: 0;
-      animation: fadeUp 1.2s ease 1.3s forwards;
+      text-transform: uppercase;
     }
 
     .panel__link {
@@ -179,8 +182,6 @@
       letter-spacing: 0.45em;
       color: var(--mid);
       text-transform: uppercase;
-      opacity: 0;
-      animation: fadeIn 1.5s ease 1.8s forwards;
       transition: color 0.4s;
       white-space: nowrap;
     }
@@ -201,32 +202,16 @@
 
     /* intro */
     .intro {
-      padding: 7rem 2rem 6rem;
-      max-width: 740px;
+      padding: 7rem 5rem 6rem;
+      max-width: 580px;
       margin: 0 auto;
-      text-align: center;
     }
 
-    .intro__label {
-      font-family: 'Zen Kaku Gothic New', sans-serif;
-      font-weight: 300;
-      font-size: 0.9rem;
-      letter-spacing: 0.5em;
-      color: var(--mid);
-      text-transform: uppercase;
-      margin-bottom: 2.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-    }
-    .intro__label::before {
-      content: '';
-      display: block;
-      width: 20px;
+    .intro__rule {
+      width: 40px;
       height: 1px;
-      background: var(--mid);
-      flex-shrink: 0;
+      background: linear-gradient(to right, transparent, var(--gold-l), transparent);
+      margin: 0 auto 4.5rem;
     }
 
     .intro__text {
@@ -238,15 +223,33 @@
       line-break: strict;
       text-wrap: wrap;
       overflow-wrap: anywhere;
+      text-align: left;
     }
-    .intro__text .accent { color: var(--text); font-weight: 300; }
     .intro__text p + p { margin-top: 1.6em; }
+
+    .intro__founder {
+      margin-top: 2.4em;
+      text-align: right;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+    .intro__founder .founder-name {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 300;
+      font-size: 1.05rem;
+      letter-spacing: 0.12em;
+      color: var(--text);
+    }
 
     /* form section */
     .form-sec {
       border-top: 1px solid var(--gline);
-      padding: 5rem 2rem 8rem;
-      max-width: 740px;
+      padding: 5rem 5rem 8rem;
+      max-width: 580px;
       margin: 0 auto;
       text-align: center;
     }
@@ -262,13 +265,6 @@
       letter-spacing: 0.18em;
       color: var(--text);
       margin-bottom: 0.5rem;
-    }
-
-    .form-rule {
-      width: 32px;
-      height: 1px;
-      background: var(--gold-l);
-      margin: 1rem auto 0.6rem;
     }
 
     .form-sub {
@@ -289,8 +285,6 @@
     }
     .field:focus-within { border-bottom-color: var(--gold-l); }
 
-    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; }
-
     .field__lbl {
       display: block;
       font-family: 'Zen Kaku Gothic New', sans-serif;
@@ -304,7 +298,7 @@
     .field:focus-within .field__lbl { color: var(--gold-l); }
     .field__req { color: var(--gold-l); margin-left: 0.1em; }
 
-    .field__input, .field__sel {
+    .field__input {
       display: block;
       width: 100%;
       background: transparent;
@@ -322,137 +316,6 @@
       caret-color: var(--gold);
     }
     .field__input::placeholder { color: rgba(78,73,68,0.45); font-weight: 200; font-size: 0.88rem; }
-
-    .field__sel { font-size: 0.8rem; }
-    .field__sel.has-value { font-size: 0.9rem; }
-    .field__sel {
-      cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg width='8' height='5' viewBox='0 0 8 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L4 5L8 0' stroke='%234e4944' stroke-width='0.7' fill='none'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 0 center;
-      padding-right: 1rem;
-    }
-    .field__sel option { background: #111; color: var(--text); }
-
-    /* ── カスタムドロップダウン (PC用) ── */
-    .csel {
-      position: relative;
-    }
-    /* ネイティブselectはPC時に非表示 */
-    @media (min-width: 861px) {
-      .csel .field__sel { display: none; }
-    }
-
-    .csel__trigger {
-      display: none;
-    }
-    @media (min-width: 861px) {
-      .csel__trigger {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        background: transparent;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 0.08rem 0;
-        color: var(--mid);
-        font-family: 'Noto Serif JP', serif;
-        font-weight: 300;
-        font-size: 0.88rem;
-        letter-spacing: 0.04em;
-        text-align: left;
-      }
-      .csel__trigger.selected {
-        color: var(--text);
-        font-size: 1rem;
-      }
-    }
-
-    .csel__arrow {
-      width: 10px;
-      height: 10px;
-      flex-shrink: 0;
-      margin-left: 0.5rem;
-      transition: transform 0.3s ease;
-    }
-    .csel.open .csel__arrow {
-      transform: rotate(180deg);
-    }
-
-    .csel__list {
-      display: none;
-      position: absolute;
-      top: calc(100% + 1px);
-      left: -2rem;
-      right: -2rem;
-      background: #0f0f0f;
-      border: 1px solid var(--gline);
-      border-top: 1px solid var(--gold-l);
-      z-index: 100;
-      overflow: hidden;
-    }
-    .csel.open .csel__list {
-      display: block;
-      animation: fadeUp 0.22s ease forwards;
-    }
-
-    .csel__opt {
-      display: block;
-      width: 100%;
-      padding: 1rem 2rem;
-      background: transparent;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      font-family: 'Noto Serif JP', serif;
-      font-weight: 300;
-      font-size: 0.96rem;
-      letter-spacing: 0.06em;
-      color: var(--mid);
-      text-align: left;
-      transition: color 0.2s, background 0.2s;
-      border-bottom: 1px solid rgba(78,73,68,0.2);
-    }
-    .csel__opt:last-child { border-bottom: none; }
-    .csel__opt:hover {
-      color: var(--text);
-      background: rgba(196,160,80,0.05);
-    }
-    .csel__opt.selected {
-      color: var(--gold);
-    }
-
-    .check-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-      padding: 2rem 0 1.6rem;
-    }
-    .check-box {
-      flex-shrink: 0;
-      width: 12px; height: 12px;
-      appearance: none;
-      -webkit-appearance: none;
-      border: 1px solid var(--dim);
-      background: transparent;
-      cursor: pointer;
-      position: relative;
-      margin-top: 3px;
-      transition: border-color 0.3s;
-    }
-    .check-box:checked { border-color: var(--gold-l); }
-    .check-box:checked::after { content: ''; position: absolute; inset: 2px; background: var(--gold); }
-    .check-lbl {
-      font-family: 'Zen Kaku Gothic New', sans-serif;
-      font-weight: 300;
-      font-size: 0.8rem;
-      color: var(--mid);
-      line-height: 1.9;
-      letter-spacing: 0.04em;
-      cursor: pointer;
-    }
 
     .btn {
       display: block;
@@ -474,7 +337,6 @@
     .btn__text { position: relative; z-index: 1; }
     .btn:hover .btn__fill { transform: scaleX(1); }
     .btn:hover { color: var(--bg); border-color: var(--gold); }
-    .btn:disabled { opacity: 0.2; cursor: not-allowed; pointer-events: none; }
 
     .form-note {
       margin-top: 1.6rem;
@@ -489,8 +351,6 @@
     /* バリデーションエラー状態 */
     .field.invalid { border-bottom-color: #b06050; }
     .field.invalid .field__lbl { color: #b06050; }
-    .check-row.invalid .check-lbl { color: #b06050; }
-    .check-row.invalid .check-box { border-color: #b06050; }
     .field__err {
       display: block;
       font-family: 'Zen Kaku Gothic New', sans-serif;
@@ -519,11 +379,7 @@
     .footer__logo { height: 18px; width: auto; opacity: 0.2; }
     .footer__copy { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 300; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--mid); }
 
-    /* reveal */
-    [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity 0.9s ease, transform 0.9s ease; }
-    [data-reveal].in { opacity: 1; transform: none; }
-    [data-reveal][data-d="1"] { transition-delay: 0.12s; }
-    [data-reveal][data-d="2"] { transition-delay: 0.24s; }
+    /* reveal — GSAP ScrollTrigger で制御 */
 
     @keyframes fadeUp { from { opacity:0; transform: translateY(14px); } to { opacity:1; transform: none; } }
     @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
@@ -535,6 +391,8 @@
 
     /* モバイルのみ改行 */
     .mb-br { display: none; }
+    /* PC のみ改行 */
+    .pc-br { display: inline; }
 
     /* ═══════════════════════════════════════
        MOBILE HERO OVERRIDE  (<860px)
@@ -577,39 +435,32 @@
       .panel__logo {
         height: 124px;
         margin-bottom: 2rem;
-        animation: fadeIn 1.2s ease 0.2s both;
       }
 
-      /* 最上位ブランド、始動。 */
+      /* 日本を、醸す。 */
       .panel__sub {
         font-size: 0.94rem;
         letter-spacing: 0.28em;
         color: var(--mid);
         margin-bottom: 1.6rem;
-        animation: fadeUp 1.1s ease 0.6s both;
       }
 
-      /* BRILLIANCE — large hero size */
+      /* 日本を、醸す。 — mobile hero size */
       .panel__brand {
-        font-size: clamp(2rem, 10vw, 7.5rem);
-        letter-spacing: 0.18em;
-        margin-right: -0.18em;
+        font-size: clamp(1.6rem, 7vw, 3rem);
+        letter-spacing: 0.22em;
         margin-bottom: 1.8rem;
-        animation: fadeUp 1.4s cubic-bezier(0.22,1,0.36,1) 0.8s both;
       }
 
       .panel__detail {
-        /* 1行目23文字がちょうど収まるようビューポート幅から逆算 */
         font-size: min(0.92rem, calc((100vw - 68px) / 23));
         letter-spacing: 0;
         line-height: 2.4;
-        animation: fadeUp 1.1s ease 1.0s both;
       }
 
       .panel__season {
-        font-size: 0.92rem;
+        font-size: 0.78rem;
         margin-top: 0.4rem;
-        animation: fadeUp 1.1s ease 1.2s both;
       }
 
       /* scroll hint — shown only on mobile */
@@ -623,7 +474,6 @@
         font-size: 0.64rem;
         letter-spacing: 0.5em;
         margin-top: 2.4rem;
-        animation: fadeIn 1.5s ease 1.6s both;
       }
       .panel__link::after {
         content: '';
@@ -639,17 +489,19 @@
         padding: 5rem 2rem 4rem;
         max-width: 100%;
         margin: 0;
-        text-align: center;
       }
-      .intro__label {
-        justify-content: center;
-      }
-      .intro__label::before { display: none; }
 
       .intro__text {
-        text-align: center;
         text-wrap: wrap;
-        letter-spacing: 0.02em; /* 文字幅を詰めてスマホ画面に収める */
+        letter-spacing: 0.02em;
+        font-size: 0.82rem;
+        line-height: 2.6;
+      }
+
+      .pc-br { display: none; }
+
+      .form-sub {
+        font-size: 0.78rem;
       }
 
       .form-sec {
@@ -663,8 +515,6 @@
         justify-content: center;
       }
 
-      .field-row { grid-template-columns: 1fr; }
-
       .seg-toggle__btn {
         font-size: 0.72rem;
         letter-spacing: 0.1em;
@@ -672,14 +522,10 @@
       }
     }
 
-    /* narrow phones: tighten BRILLIANCE letter-spacing */
-    @media (max-width: 600px) {
-      .panel__brand { letter-spacing: 0.1em; margin-right: -0.1em; }
-    }
 
 
     /* ═══════════════════════════════════════
-       SEGMENTED TOGGLE  (個人 / 飲食店・業者)
+       SEGMENTED TOGGLE  (個人 / 飲食店)
     ═══════════════════════════════════════ */
 
     .toggle-wrap {
@@ -729,7 +575,6 @@
 
     /* ═══════════════════════════════════════
        PC FONT SIZE BOOST  (>860px)
-       INFO ラベル以外のコンテンツ文字を拡大
     ═══════════════════════════════════════ */
 
     @media (min-width: 861px) {
@@ -737,11 +582,8 @@
       .form-title        { font-size: clamp(1.6rem, 3vw, 2.2rem); }
       .form-sub          { font-size: 0.92rem; }
       .field__lbl        { font-size: 0.82rem; }
-      .field__input,
-      .field__sel.has-value { font-size: 1rem; }
-      .field__sel        { font-size: 0.88rem; }
+      .field__input      { font-size: 1rem; }
       .seg-toggle__btn   { font-size: 0.82rem; }
-      .check-lbl         { font-size: 0.88rem; }
       .btn               { font-size: 0.92rem; }
       .form-note         { font-size: 0.8rem; }
       .thankyou__en      { font-size: clamp(1.6rem, 3vw, 2.2rem); }
@@ -758,10 +600,10 @@
   <aside class="panel">
     <img class="panel__logo" src="logo.svg" alt="加茂錦 紋章" draggable="false" onerror="this.style.display='none'">
     <div class="panel__rule" aria-hidden="true"></div>
-    <p class="panel__sub">最上位ブランド、始動。</p>
-    <h1 class="panel__brand">BRILLIANCE</h1>
-    <p class="panel__detail">原料と醸造の双方が基準を満たした年にのみ出荷。<br>不定期醸造、限定出荷。</p>
-    <p class="panel__season">Winter 2026 —</p>
+    <h1 class="panel__brand">日本を、醸す。</h1>
+    <p class="panel__detail">美しい稲作を、生産者から杜氏へ。<br>届けたい日本の心がある。</p>
+    <p class="panel__col-name">Signature Collection</p>
+    <p class="panel__season">Coming Soon, Winter 2026</p>
     <a class="panel__link" href="#register">REGISTER</a>
   </aside>
 
@@ -769,23 +611,28 @@
   <div class="content">
 
     <section class="intro" aria-label="ご案内">
-      <p class="intro__label" data-reveal>Info</p>
-      <div class="intro__text" data-reveal data-d="1">
-        <p>当蔵の<span class="accent">フラグシップ</span>が、リニューアルいたします。</p>
-        <p>販売のご案内は、事前にご登録いただいた方にのみ<span class="mb-br"><br></span>直接お届けいたします。</p>
-        <p>ご登録は以下のフォームよりお願いいたします。</p>
+
+      <div class="intro__rule" aria-hidden="true"></div>
+
+      <div class="intro__text">
+        <p>当蔵は「日本を、醸す。」をテーマに、<br class="pc-br">新潟、兵庫、岡山、秋田…全国各地の生産者のもとへ足を運び、<br class="pc-br">その土地が育む多彩な酒造好適米の個性を<br class="pc-br">一つの蔵から醸しています。</p>
+        <p>國酒を醸す者として、生産者の気概と<br class="pc-br">日本の美しい田園風景を一口一滴に込め、<br class="pc-br">愛飲家の皆さまにお届けしたい。</p>
+        <p>好みの壁を超え、世代や国籍にかかわらず、<br class="pc-br">これからも心を動かす日本酒を目指して参ります。</p>
+        <div class="intro__founder">
+          加茂錦酒造株式会社<br>
+          代表取締役 / 醸造責任者<br>
+          <span class="founder-name">田中悠一</span>
+        </div>
       </div>
     </section>
 
     <section class="form-sec" id="register" aria-labelledby="form-title">
 
-      <div data-reveal>
-        <h2 class="form-title" id="form-title">Waiting List</h2>
-        <div class="form-rule" aria-hidden="true"></div>
-        <p class="form-sub">販売開始時にご案内をお送りいたします。ご登録は購入を確約するものではありません。</p>
+      <div>
+        <p class="form-sub">ご登録いただいた方へ、蔵からご案内いたします。<br class="pc-br">全ての醸造作品は、最高の状態で蔵元より直送いたします。</p>
       </div>
 
-      <form id="registrationForm" data-reveal data-d="1" novalidate>
+      <form id="registrationForm" novalidate>
         <input type="hidden" name="ref" id="refCode" value="direct">
         <input type="hidden" name="member_type" id="memberType" value="kojin">
 
@@ -797,106 +644,27 @@
           </div>
         </div>
 
-        <!-- ══ 共通フィールド（上）: 姓名・フリガナ・メール・電話 ══ -->
-        <div class="field-row">
-          <div class="field">
-            <label class="field__lbl" for="last_name">姓<span class="field__req">*</span></label>
-            <input class="field__input" type="text" id="last_name" name="last_name" required placeholder="田中" autocomplete="family-name">
-          </div>
-          <div class="field">
-            <label class="field__lbl" for="first_name">名<span class="field__req">*</span></label>
-            <input class="field__input" type="text" id="first_name" name="first_name" required placeholder="太郎" autocomplete="given-name">
-          </div>
-        </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label class="field__lbl" for="last_name_kana">フリガナ（セイ）<span class="field__req">*</span></label>
-            <input class="field__input" type="text" id="last_name_kana" name="last_name_kana" required placeholder="タナカ">
-          </div>
-          <div class="field">
-            <label class="field__lbl" for="first_name_kana">フリガナ（メイ）<span class="field__req">*</span></label>
-            <input class="field__input" type="text" id="first_name_kana" name="first_name_kana" required placeholder="タロウ">
-          </div>
-        </div>
-
+        <!-- ══ メールアドレス ══ -->
         <div class="field">
           <label class="field__lbl" for="email">メールアドレス<span class="field__req">*</span></label>
-          <input class="field__input" type="email" id="email" name="email" required placeholder="example@email.com" autocomplete="email">
+          <input class="field__input" type="email" id="email" name="email" required placeholder="your@email.com" autocomplete="email">
         </div>
 
-        <div class="field">
-          <label class="field__lbl" for="phone">電話番号<span class="field__req">*</span></label>
-          <input class="field__input" type="tel" id="phone" name="phone" required placeholder="090-0000-0000" autocomplete="tel" maxlength="13">
-        </div>
-
-        <!-- ══ 共通: 郵便番号 ══ -->
-        <div class="field">
-          <label class="field__lbl" for="postal_code">郵便番号<span class="field__req">*</span></label>
-          <input class="field__input" type="text" id="postal_code" name="postal_code" required placeholder="000-0000" autocomplete="postal-code" maxlength="8" inputmode="numeric">
-        </div>
-
-        <!-- ══ 個人グループ: ご住所 (default: visible) ══ -->
-        <div id="grpKojin">
-          <div class="field">
-            <label class="field__lbl" for="address">ご住所<span class="field__req">*</span></label>
-            <input class="field__input" type="text" id="address" name="address" required placeholder="都道府県 市区町村 番地" autocomplete="street-address">
-          </div>
-        </div>
-
-        <!-- ══ 飲食店グループ: 店舗名・店舗住所 (default: hidden) ══ -->
-        <div id="grpHoujin" style="display:none">
-          <div class="field">
-            <label class="field__lbl" for="shop_address">店舗住所<span class="field__req">*</span></label>
-            <input class="field__input" type="text" id="shop_address" name="shop_address" placeholder="都道府県 市区町村 番地" autocomplete="street-address">
-          </div>
-
+        <!-- ══ 店舗名（飲食店のみ） ══ -->
+        <div id="shopGroup" style="display:none">
           <div class="field">
             <label class="field__lbl" for="shop_name">店舗名<span class="field__req">*</span></label>
-            <input class="field__input" type="text" id="shop_name" name="shop_name" placeholder="">
+            <input class="field__input" type="text" id="shop_name" name="shop_name" placeholder="店舗名">
           </div>
         </div>
 
-        <!-- ══ 共通フィールド（下）: 飲酒経験・年齢確認・送信 ══ -->
-        <div class="field">
-          <label class="field__lbl" for="experience">当蔵のお酒を飲んだことはありますか</label>
-          <div class="csel" id="cselExperience">
-            <!-- PC: カスタムUI -->
-            <button type="button" class="csel__trigger" id="cselTrigger" aria-haspopup="listbox" aria-expanded="false">
-              <span id="cselValue">選択してください</span>
-              <svg class="csel__arrow" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="0.8"/>
-              </svg>
-            </button>
-            <div class="csel__list" role="listbox" id="cselList">
-              <button type="button" class="csel__opt" role="option" data-value="yes">はい</button>
-              <button type="button" class="csel__opt" role="option" data-value="no">いいえ</button>
-            </div>
-            <!-- モバイル & フォーム送信用ネイティブselect -->
-            <select class="field__sel" id="experience" name="experience">
-              <option value="" disabled selected>選択してください</option>
-              <option value="yes">はい</option>
-              <option value="no">いいえ</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="check-row">
-          <input class="check-box" type="checkbox" id="ageConfirm" required>
-          <label class="check-lbl" for="ageConfirm">
-            私は20歳以上であることを確認します。<br>
-            また、ご登録いただいた情報は販売のご案内にのみ使用いたします。
-          </label>
-        </div>
-
-        <button class="btn" type="submit" id="submitBtn" disabled>
+        <button class="btn" type="submit" id="submitBtn" style="margin-top:2rem">
           <span class="btn__fill" aria-hidden="true"></span>
           <span class="btn__text">登録する</span>
         </button>
 
         <p class="form-note">
-          ご登録後、確認メールをお送りいたします。<br>
-          販売時期・銘柄・価格は、ご案内時にお知らせいたします。
+          ※ 登録は無料です。登録によって購入の義務は一切生じません。
         </p>
       </form>
 
@@ -905,7 +673,7 @@
         <div class="thankyou__line" aria-hidden="true"></div>
         <p class="thankyou__body">
           <br>ご登録ありがとうございます。<br><br>
-          販売のご案内は、ご登録いただいた<span class="mb-br"><br></span>メールアドレスに直接お届けいたします。<br><br>
+          蔵から直接ご案内をお届けいたします。<br><br>
           今しばらくお待ちくださいませ。
         </p>
       </div>
@@ -920,7 +688,6 @@
   </div><!-- .content -->
 </div><!-- .split -->
 
-
 <script>
   /* ref tracking */
   (function(){ document.getElementById('refCode').value = new URLSearchParams(location.search).get('ref')||'direct'; })();
@@ -929,97 +696,32 @@
   (function(){
     var btnKojin   = document.getElementById('btnKojin');
     var btnHoujin  = document.getElementById('btnHoujin');
-    var grpKojin   = document.getElementById('grpKojin');
-    var grpHoujin  = document.getElementById('grpHoujin');
+    var shopGroup  = document.getElementById('shopGroup');
+    var shopInput  = document.getElementById('shop_name');
     var memberType = document.getElementById('memberType');
-
-    var kojinFields  = grpKojin.querySelectorAll('input');
-    var houjinFields = grpHoujin.querySelectorAll('input');
 
     function activateKojin() {
       btnKojin.classList.add('active');    btnKojin.setAttribute('aria-pressed', 'true');
       btnHoujin.classList.remove('active'); btnHoujin.setAttribute('aria-pressed', 'false');
-      grpKojin.style.display  = '';
-      grpHoujin.style.display = 'none';
-      kojinFields.forEach(function(f){ f.required = true; });
-      houjinFields.forEach(function(f){ f.required = false; });
+      shopGroup.style.display = 'none';
+      shopInput.required = false;
       memberType.value = 'kojin';
     }
 
     function activateHoujin() {
       btnHoujin.classList.add('active');   btnHoujin.setAttribute('aria-pressed', 'true');
       btnKojin.classList.remove('active'); btnKojin.setAttribute('aria-pressed', 'false');
-      grpHoujin.style.display = '';
-      grpKojin.style.display  = 'none';
-      houjinFields.forEach(function(f){ f.required = true; });
-      kojinFields.forEach(function(f){ f.required = false; });
+      shopGroup.style.display = '';
+      shopInput.required = true;
       memberType.value = 'houjin';
     }
 
     btnKojin.addEventListener('click', activateKojin);
     btnHoujin.addEventListener('click', activateHoujin);
-
-    /* initialise: houjin fields must NOT be required on load */
-    houjinFields.forEach(function(f){ f.required = false; });
   })();
-
-  /* ── カスタムドロップダウン ── */
-  (function(){
-    var csel     = document.getElementById('cselExperience');
-    var trigger  = document.getElementById('cselTrigger');
-    var valueEl  = document.getElementById('cselValue');
-    var list     = document.getElementById('cselList');
-    var nativeSel = document.getElementById('experience');
-
-    function open() {
-      csel.classList.add('open');
-      trigger.setAttribute('aria-expanded', 'true');
-    }
-    function close() {
-      csel.classList.remove('open');
-      trigger.setAttribute('aria-expanded', 'false');
-    }
-
-    trigger.addEventListener('click', function(e){
-      e.stopPropagation();
-      csel.classList.contains('open') ? close() : open();
-    });
-
-    list.querySelectorAll('.csel__opt').forEach(function(opt) {
-      opt.addEventListener('click', function(){
-        var val   = this.dataset.value;
-        var label = this.textContent;
-        /* ネイティブselectと同期 */
-        nativeSel.value = val;
-        /* UI更新 */
-        valueEl.textContent = label;
-        trigger.classList.add('selected');
-        list.querySelectorAll('.csel__opt').forEach(function(o){ o.classList.remove('selected'); });
-        this.classList.add('selected');
-        close();
-      });
-    });
-
-    /* 外側クリックで閉じる */
-    document.addEventListener('click', function(){ close(); });
-    csel.addEventListener('click', function(e){ e.stopPropagation(); });
-  })();
-
-  /* select: shrink placeholder text, restore on real selection */
-  document.querySelectorAll('.field__sel').forEach(function(sel){
-    function update(){ sel.classList.toggle('has-value', sel.value !== ''); }
-    sel.addEventListener('change', update);
-    update();
-  });
-
-  /* checkbox → enable submit */
-  var box = document.getElementById('ageConfirm');
-  var btn = document.getElementById('submitBtn');
-  box.addEventListener('change', function(){ btn.disabled = !this.checked; });
 
   /* バリデーション helpers */
-  var RE_KATAKANA = /^[ァ-ヶー\s　]+$/;
-  var RE_EMAIL    = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
   function setFieldError(input, msg) {
     var wrap = input.closest('.field');
@@ -1035,7 +737,7 @@
   }
 
   function clearFieldError(input) {
-    var wrap = input.closest('.field') || input.closest('.check-row');
+    var wrap = input.closest('.field');
     if (!wrap) return;
     wrap.classList.remove('invalid');
     var err = wrap.querySelector('.field__err');
@@ -1046,30 +748,19 @@
     var valid = true;
     var firstInvalid = null;
 
-    /* required チェック（hidden除外） */
+    /* required チェック */
     form.querySelectorAll('[required]').forEach(function(input) {
       if (input.type === 'hidden') return;
       clearFieldError(input);
-      var wrap = input.closest('.field') || input.closest('.check-row');
-      var empty = input.type === 'checkbox' ? !input.checked : !input.value.trim();
-      if (empty) {
+      if (!input.value.trim()) {
         valid = false;
+        var wrap = input.closest('.field');
         if (wrap) wrap.classList.add('invalid');
         if (!firstInvalid) firstInvalid = wrap || input;
       }
     });
 
-    /* フォーマットチェック（値がある場合のみ） */
-    ['last_name_kana', 'first_name_kana'].forEach(function(id) {
-      var input = document.getElementById(id);
-      if (!input || !input.value.trim()) return;
-      if (!RE_KATAKANA.test(input.value.trim())) {
-        setFieldError(input, 'カタカナで入力してください');
-        valid = false;
-        if (!firstInvalid) firstInvalid = input.closest('.field') || input;
-      }
-    });
-
+    /* メール形式チェック */
     var emailInput = document.getElementById('email');
     if (emailInput && emailInput.value.trim() && !RE_EMAIL.test(emailInput.value.trim())) {
       setFieldError(emailInput, '正しいメールアドレスを入力してください');
@@ -1083,11 +774,8 @@
     return valid;
   }
 
-  /* 入力・変更したらエラー状態を解除 */
+  /* 入力したらエラー状態を解除 */
   document.getElementById('registrationForm').addEventListener('input', function(e) {
-    clearFieldError(e.target);
-  });
-  document.getElementById('registrationForm').addEventListener('change', function(e) {
     clearFieldError(e.target);
   });
 
@@ -1099,7 +787,7 @@
     var data = Object.fromEntries(new FormData(this).entries());
     console.log('[BRILLIANCE WL]', data);
     var f = this;
-    var h = f.previousElementSibling; /* form heading div */
+    var h = f.previousElementSibling;
     [f, h].forEach(function(el){
       if (!el) return;
       el.style.transition = 'opacity 0.4s';
@@ -1114,85 +802,46 @@
     }, 420);
   });
 
-  /* postal auto-format + 住所自動入力 (zipcloud API) */
+  /* ── GSAP アニメーション ── */
   (function(){
-    var postalInput = document.getElementById('postal_code');
+    gsap.registerPlugin(ScrollTrigger);
 
-    var PLACEHOLDER_DEFAULT  = '都道府県 市区町村 番地';
-    var PLACEHOLDER_LOADING  = '検索中…';
-    var PLACEHOLDER_NOTFOUND = '該当する住所が見つかりませんでした';
-    var PLACEHOLDER_ERROR    = '住所の取得に失敗しました';
+    var tl = gsap.timeline({ delay: 0.15 });
+    tl.from('.panel__logo',   { opacity: 0, y: 18, duration: 1.4, ease: 'power3.out' })
+      .from('.panel__rule',   { opacity: 0, scaleX: 0, transformOrigin: 'left center', duration: 1.0, ease: 'power2.inOut' }, '-=0.8')
+      .fromTo('.panel__brand',
+        { opacity: 0, y: 16, filter: 'blur(8px)' },
+        { opacity: 1, y: 0,  filter: 'blur(0px)', duration: 1.8, ease: 'power3.out' }, '-=0.6')
+      .from('.panel__detail', { opacity: 0, y: 12, duration: 1.1, ease: 'power2.out' }, '-=0.9')
+      .from('.panel__col-name, .panel__season', { opacity: 0, y: 10, duration: 1.0, ease: 'power2.out', stagger: 0.15 }, '-=0.7')
+      .from('.panel__link',   { opacity: 0, duration: 1.2, ease: 'power1.inOut' }, '-=0.6');
 
-    function getTarget() {
-      var isHoujin = document.getElementById('grpHoujin').style.display !== 'none';
-      return document.getElementById(isHoujin ? 'shop_address' : 'address');
-    }
 
-    function setAddressPlaceholder(msg) {
-      var t = getTarget();
-      if (t) t.placeholder = msg;
-    }
-
-    postalInput.addEventListener('input', function(){
-      /* フォーマット */
-      var digits = this.value.replace(/\D/g,'').slice(0,7);
-      this.value = digits.length > 3 ? digits.slice(0,3)+'-'+digits.slice(3) : digits;
-      /* 7桁揃ったらAPI呼び出し */
-      if (digits.length !== 7) {
-        setAddressPlaceholder(PLACEHOLDER_DEFAULT);
-        return;
-      }
-
-      setAddressPlaceholder(PLACEHOLDER_LOADING);
-
-      fetch('https://zipcloud.ibsnet.co.jp/api/search?zipcode=' + digits)
-        .then(function(res){ return res.json(); })
-        .then(function(data){
-          if (data.status !== 200 || !data.results) {
-            setAddressPlaceholder(PLACEHOLDER_NOTFOUND);
-            return;
-          }
-          var r    = data.results[0];
-          var addr = (r.address1 || '') + (r.address2 || '') + (r.address3 || '');
-          var t    = getTarget();
-          if (t) {
-            t.value       = addr;
-            t.placeholder = PLACEHOLDER_DEFAULT;
-          }
-        })
-        .catch(function(){
-          setAddressPlaceholder(PLACEHOLDER_ERROR);
-        });
+    gsap.from('.intro__rule', {
+      scrollTrigger: { trigger: '.intro__rule', start: 'top 88%' },
+      scaleX: 0, opacity: 0, duration: 1.0, ease: 'power2.inOut'
     });
-  })();
 
-  /* select: shrink placeholder text, restore on real selection */
-  document.querySelectorAll('.field__sel').forEach(function(sel){
-    function update(){ sel.classList.toggle('has-value', sel.value !== ''); }
-    sel.addEventListener('change', update);
-    update();
-  });
-
-  /* phone auto-format */
-  document.getElementById('phone').addEventListener('input', function(){
-    var v = this.value.replace(/\D/g,'').slice(0,11);
-    if      (v.length > 7) v = v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7);
-    else if (v.length > 3) v = v.slice(0,3)+'-'+v.slice(3);
-    this.value = v;
-  });
-
-  /* scroll reveal */
-  (function(){
-    if (!window.IntersectionObserver){
-      document.querySelectorAll('[data-reveal]').forEach(function(el){ el.classList.add('in'); });
-      return;
-    }
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
+    gsap.from('.intro__text p', {
+      scrollTrigger: { trigger: '.intro__text', start: 'top 85%' },
+      opacity: 0, y: 16, duration: 1.0, stagger: 0.18, ease: 'power3.out'
+    });
+    gsap.from('.intro__founder', {
+      scrollTrigger: { trigger: '.intro__founder', start: 'top 90%' },
+      opacity: 0, y: 12, duration: 1.0, ease: 'power2.out'
+    });
+    gsap.from('.form-title', {
+      scrollTrigger: { trigger: '.form-title', start: 'top 88%' },
+      opacity: 0, y: 18, duration: 1.0, ease: 'power3.out'
+    });
+    gsap.from('.form-sub', {
+      scrollTrigger: { trigger: '.form-sub', start: 'top 88%' },
+      opacity: 0, y: 14, duration: 0.9, ease: 'power2.out'
+    });
+    gsap.from('.toggle-wrap, .field, .btn, .form-note', {
+      scrollTrigger: { trigger: '#registrationForm', start: 'top 82%' },
+      opacity: 0, y: 14, duration: 0.7, stagger: 0.08, ease: 'power2.out'
+    });
   })();
 
   /* ── コピー・ドラッグ・右クリック禁止 ── */
