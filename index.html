@@ -888,9 +888,14 @@
       ty.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 420);
 
-    // 裏でGASに送信（ページ離脱時も送信を保証）
-    var blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-    navigator.sendBeacon(GAS_URL, blob);
+    // 裏でGASに送信（keepaliveでページ離脱時も送信を保証）
+    fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
   });
 
   /* ── GSAP アニメーション ── */
