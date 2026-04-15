@@ -108,9 +108,10 @@
     }
 
     .panel__logo {
+      width: 120px;
       height: 120px;
-      width: auto;
       margin-bottom: 2rem;
+      background: url('logo.svg') center / contain no-repeat;
     }
 
     .panel__rule {
@@ -245,10 +246,11 @@
     }
     .intro__founder .founder-sign {
       display: block;
+      width: 7rem;
       height: 2.8rem;
-      width: auto;
       margin-left: auto;
       margin-top: 0.8rem;
+      background: url('sign.svg') right center / contain no-repeat;
     }
 
     /* form section */
@@ -384,7 +386,7 @@
       align-items: center;
       gap: 0.8rem;
     }
-    .footer__logo { height: 56px; width: auto; opacity: 0.3; transition: opacity 0.3s; }
+    .footer__logo { width: 56px; height: 56px; opacity: 0.3; transition: opacity 0.3s; background: url('logo.svg') center / contain no-repeat; }
     .footer__logo-link:hover .footer__logo { opacity: 0.5; }
     .footer__copy { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 300; font-size: 0.75rem; letter-spacing: 0.18em; color: var(--mid); }
     .footer__links {
@@ -465,6 +467,7 @@
 
       /* logo: larger for mobile hero */
       .panel__logo {
+        width: 124px;
         height: 124px;
         margin-bottom: 2rem;
       }
@@ -547,7 +550,7 @@
         justify-content: center;
         gap: 1.2rem;
       }
-      .footer__logo { height: 64px; }
+      .footer__logo { width: 64px; height: 64px; }
       .footer__links { gap: 2rem; }
       .footer__links svg { width: 26px; height: 26px; }
       .footer__links a { padding: 0.4rem; }
@@ -633,7 +636,7 @@
 
   <!-- ══════ LEFT PANEL / MOBILE HERO ══════ -->
   <aside class="panel">
-    <img class="panel__logo" src="logo.svg" alt="加茂錦 紋章" draggable="false" onerror="this.style.display='none'">
+    <div class="panel__logo" role="img" aria-label="加茂錦 紋章"></div>
     <div class="panel__rule" aria-hidden="true"></div>
     <h1 class="panel__brand">日本を、醸す。</h1>
     <p class="panel__detail">美しい稲作を、生産者から杜氏へ。<br>届けたい日本の心がある。</p>
@@ -655,7 +658,7 @@
         <div class="intro__founder">
           加茂錦酒造株式会社<br>
           代表取締役社長 / 醸造責任者<br>
-          <img class="founder-sign" src="sign.svg" alt="田中悠一" draggable="false">
+          <div class="founder-sign" role="img" aria-label="田中悠一"></div>
         </div>
       </div>
     </section>
@@ -715,7 +718,7 @@
 
     <footer class="footer">
       <div class="footer__row">
-        <a class="footer__logo-link" href="https://kamonishiki.com/" target="_blank" rel="noopener"><img class="footer__logo" src="logo.svg" alt="加茂錦酒造" onerror="this.style.display='none'"></a>
+        <a class="footer__logo-link" href="https://kamonishiki.com/" target="_blank" rel="noopener"><div class="footer__logo" role="img" aria-label="加茂錦酒造"></div></a>
         <p class="footer__copy">© 2026 加茂錦酒造株式会社</p>
       </div>
       <div class="footer__links">
